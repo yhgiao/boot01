@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd">
+
+    <!--扫包开启注解-->
+    <context:component-scan base-package="com.hz.dao,com.hz.service,com.hz.utils"/>
+
+     <!--开启-->
+      <mvc:default-servlet-handler/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--&lt;!&ndash;SpringLogger实例化&ndash;&gt;-->
+    <!--<bean id="SpringLogger" class="com.hz.utils.SpringLogger"/>-->
+
+    <!--&lt;!&ndash;配置AOP&ndash;&gt;-->
+    <!--<aop:config>-->
+        <!--&lt;!&ndash;配置切入点  id起个名字  给哪些类的哪些方法做增强&ndash;&gt;-->
+        <!--<aop:pointcut id="pointcut" expression="execution(* com.hz.service..*.*(..))"/>-->
+        <!--&lt;!&ndash;织入增强处理 切入点和增强类做绑定 &ndash;&gt;-->
+        <!--&lt;!&ndash;ref增强类 实例化&ndash;&gt;-->
+        <!--<aop:aspect ref="SpringLogger">-->
+            <!--&lt;!&ndash;前置增强   ，将切入点与before方法绑定-->
+               <!--method : 增强类SpringLogger下的方法beforeLog&ndash;&gt;-->
+              <!--<aop:before method="beforeLog"-->
+                              <!--pointcut-ref="pointcut"></aop:before>-->
+               <!--&lt;!&ndash;使用后置增强，将切入点与after方法绑定-->
+                  <!--returning 返回参数接收 “返回值变量名”      &ndash;&gt;-->
+                   <!--<aop:after-returning method="afterReturningLog"-->
+                                    <!--pointcut-ref="pointcut" returning="res"/>-->
+                <!--&lt;!&ndash;配置最终增强&ndash;&gt;-->
+               <!--<aop:after method="afterLog" pointcut-ref="pointcut"></aop:after>-->
+            <!--&lt;!&ndash;配置异常增强&ndash;&gt;-->
+            <!--<aop:after-throwing method="afterThrowingLog" pointcut-ref="pointcut"></aop:after-throwing>-->
+
+        <!--</aop:aspect>-->
+
+    <!--</aop:config>-->
+
+
+
+
+
+
+
+
+
+    <!--&lt;!&ndash;-->
+    <!--1.开启spring注解-->
+    <!--2.使用bean标签-->
+
+    <!--创建数据源-->
+    <!--将数据源注入dao层-->
+    <!--&ndash;&gt;-->
+    <!--&lt;!&ndash;读取 jdbc.properties文件&ndash;&gt;-->
+    <!--<context:property-placeholder location="classpath:jdbc.properties"/>-->
+    <!--&lt;!&ndash;创建数据源&ndash;&gt;-->
+    <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+        <!--<property name="driverClass" value="${jdbc.driver}"/>-->
+        <!--<property name="jdbcUrl" value="${jdbc.url}"/>-->
+        <!--<property name="user" value="${jdbc.username}"/>-->
+        <!--<property name="password" value="${jdbc.password}"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;创建工厂  sqlSessionFactory &ndash;&gt;-->
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+        <!--&lt;!&ndash; 注入数据库连接池 &ndash;&gt;-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+
+        <!--&lt;!&ndash; 扫描pojo包 使用别名 &ndash;&gt;-->
+        <!--<property name="typeAliasesPackage" value="com.hz.pojo"/>-->
+
+        <!--&lt;!&ndash; 扫描sql配置文件:mappers需要的xml文件 &ndash;&gt;-->
+        <!--<property name="mapperLocations" value="classpath:mappers/*.xml"/>-->
+
+        <!--&lt;!&ndash;读取mybatis主配置文件&ndash;&gt;-->
+        <!--<property name="configLocation" value="classpath:mybatis.xml"/>-->
+     <!--</bean>-->
+
+    <!--&lt;!&ndash;将工厂创建好的连接信息   注入到dao层&ndash;&gt;-->
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+        <!--&lt;!&ndash;自动加载  工厂创建好的连接信息&ndash;&gt;-->
+        <!--&lt;!&ndash;使用注解&ndash;&gt;-->
+        <!--<property name="basePackage" value="com.hz.dao"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;扫描service &ndash;&gt;-->
+    <!--<context:component-scan base-package="com.hz.service"/>-->
+
+
+</beans>
